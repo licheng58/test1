@@ -12,7 +12,10 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login.vue')
+    component: () => import('@/views/login.vue'),
+    meta: {
+      title: '登录'
+    }
   },
   {
     path: '/home',
@@ -25,9 +28,12 @@ const routes = [
 
 ];
 
+
+
 const router = new VueRouter({
   mode: 'history',
   routes
 });
+
 
 export default router;
