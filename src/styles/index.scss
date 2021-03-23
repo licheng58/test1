@@ -1,0 +1,43 @@
+@import './element-ui.scss';
+
+// 继承父组件box-sizing属性
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  box-sizing: border-box;
+  font-family: '微软雅黑', '宋体';
+}
+
+html {
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+body {
+  font-family: '微软雅黑', '宋体';
+  min-height: 100vh;
+}
+
+#app {
+  height: 100vh;
+}
+
+// 清除浮动
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}

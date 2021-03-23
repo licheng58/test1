@@ -1,7 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
 Vue.use(VueRouter);
+
+
+
+
+
 
 const routes = [
 
@@ -12,19 +16,30 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login.vue'),
+    component: () => import('../views/login.vue'),
     meta: {
       title: '登录'
-    }
+    },
+
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    path: '/layout',
+    name: 'layout',
+    component: () => import('../views/layout/layout.vue'),
     meta: {
-      title: "首页"
-    }
-  }
+      title: "布局"
+    },
+    // children: [{
+    //   path: '/home',
+    //   name: 'Home',
+    //   component: () => import('@/views/Home'),
+    //   meta: {
+    //     title: "首页"
+    //   }
+    // }]
+  },
+
+
 
 ];
 
