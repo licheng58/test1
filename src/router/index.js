@@ -1,33 +1,26 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
-
-
-
-
-
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
 const routes = [
-
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login.vue'),
     meta: {
-      title: '登录'
+      title: '登录',
     },
-
   },
   {
     path: '/layout',
     name: 'layout',
     component: () => import('../views/layout/layout.vue'),
     meta: {
-      title: "布局"
+      title: '布局',
     },
     // children: [{
     //   path: '/home',
@@ -38,17 +31,11 @@ const routes = [
     //   }
     // }]
   },
-
-
-
-];
-
-
+]
 
 const router = new VueRouter({
   mode: 'history',
-  routes
-});
+  routes,
+})
 
-
-export default router;
+export default router
