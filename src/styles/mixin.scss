@@ -1,0 +1,13 @@
+@import './variables.scss';
+// 切换模态框的背景色
+@mixin change_BGC($bgc) {
+  
+  [data-theme="a"] & {
+    background-color: $BGC1 !important;
+  }
+  [data-theme="b"] & {
+    background-color: $BGC2 !important;
+  }
+ 
+
+}

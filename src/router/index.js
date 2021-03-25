@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/login.vue'),
+    component: () => import('../views/login/login.vue'),
     meta: {
       title: '登录',
     },
@@ -22,14 +22,16 @@ const routes = [
     meta: {
       title: '布局',
     },
-    // children: [{
-    //   path: '/home',
-    //   name: 'Home',
-    //   component: () => import('@/views/Home'),
-    //   meta: {
-    //     title: "首页"
-    //   }
-    // }]
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/views/home/home'),
+        meta: {
+          title: '首页',
+        },
+      },
+    ],
   },
 ]
 
