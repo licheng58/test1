@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router' //路由组件
-import '@/permission' //路由配置
+import '@/router_permission' //路由配置
 import store from './store' //vuex
 import '@/icons' //svg文件
 import '@/styles/index.scss' //公共样式
@@ -17,7 +17,9 @@ Vue.use(ElementUI) //使用elementUI
 const bus = new Vue()
 Vue.prototype.$bus = bus
 
+
 Vue.config.productionTip = false
+
 
 new Vue({
   router,

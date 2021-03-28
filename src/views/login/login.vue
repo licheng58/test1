@@ -1,9 +1,7 @@
 <template>
   <div class="login">
     <div class="login-page" v-drag>
-      <div class="login-title ">
-        日不落闪过系统
-      </div>
+      <div class="login-title">日不落闪过系统</div>
       <div class="login-content">
         <login-form></login-form>
       </div>

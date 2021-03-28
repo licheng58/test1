@@ -1,4 +1,5 @@
 const getters = {
-  // MAIN_COLOR: (state) => state.color.MAIN_COLOR,
+  roles: (state) => state.user.roles,
+  token: (state) => state.user.token
 }
 export default getters

@@ -4,35 +4,33 @@
       <el-col>
         <el-form-item>
           <el-input
-            v-model="loginForm.idNumber"
             class="input-width"
-            placeholder="账号"
             maxlength="10"
-            show-word-limit
+            placeholder="用户名"
             prefix-icon="icon iconfont icon-yonghu"
+            show-word-limit
+            v-model="loginForm.username"
           ></el-input>
         </el-form-item>
         <el-form-item>
           <el-input
-            v-model="loginForm.password"
             class="input-width"
-            placeholder="密码"
             maxlength="20"
-            show-word-limit
-            show-password
+            placeholder="密码"
             prefix-icon="icon iconfont icon-mima"
+            show-password
+            show-word-limit
+            v-model="loginForm.password"
           ></el-input>
         </el-form-item>
         <div class="btn">
           <el-button
-            style="border-radius: 5px;  width: 100%;"
-            class="search-button"
             @click="login()"
-            type="primary"
+            class="search-button"
             size="small"
-          >
-            确定
-          </el-button>
+            style="border-radius: 5px;  width: 100%;"
+            type="primary"
+          >确定</el-button>
         </div>
       </el-col>
     </el-row>
@@ -40,8 +38,9 @@
 </template>
 
 <script>
+import { setCookie } from '@/utils/supports'
 const loginForm = {
-  idNumber: '',
+  username: '',
   password: '',
 }
 export default {
@@ -52,8 +51,12 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.loginForm)
-      this.$router.push('/home')
+      this.$store.dispatch('Login', this.loginForm).then(() => {
+        setCookie('username', this.loginForm.username, 7)
+        setCookie('password', this.loginForm.password, 7)
+        this.$router.push('/')
+        this.$message.success('登录成功')
+      })
     },
   },
 }
