@@ -1,12 +1,17 @@
 <template>
   <div class="app-wapper">
     <el-container>
+      <!-- 侧边栏 -->
       <side-bar></side-bar>
       <el-container>
+        <!-- 头部 -->
         <el-header>
           <header-bar></header-bar>
         </el-header>
-        <el-main>Main</el-main>
+        <!-- 主体 -->
+        <el-main>
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -21,9 +26,7 @@ export default {
     headerBar,
   },
   data() {
-    return {
-      bb: 0,
-    }
+    return {}
   },
   created() {},
 }

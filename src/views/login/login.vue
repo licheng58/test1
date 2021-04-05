@@ -20,11 +20,7 @@ export default {
     return {}
   },
 
-  methods: {
-    toHome() {
-      this.$router.push('/home')
-    },
-  },
+  methods: {},
 }
 </script>
 

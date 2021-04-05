@@ -6,7 +6,6 @@
               router 采用路由模式 菜单上的index就是点击跳转的页面
               text-color 菜单文字的颜色
     active-text-color 菜单激活后文字的颜色-->
-
     <el-menu
       :collapse="isCollapse"
       :default-active="$route.path"
@@ -28,7 +27,7 @@
               item.title !== '首页'
           "
         >
-          <!-- 第er层菜单栏 -->
+          <!-- 第2层菜单栏 -->
           <el-submenu :index="item.path">
             <template slot="title">
               <i :class="item.icon" class="icon iconfont"></i>
@@ -37,9 +36,8 @@
             <span :key="index2" v-for="(item2, index2) in item.children">
               <template>
                 <el-menu-item :index="item2.path">
-                  {{
-                  item2.title
-                  }}
+                  <i :class="item2.icon" class="icon iconfont"></i>
+                  <span>{{ item2.title }}</span>
                 </el-menu-item>
               </template>
             </span>
@@ -47,7 +45,7 @@
         </template>
         <!-- 一层菜单栏 -->
         <template v-if="item.title === '首页'">
-          <el-menu-item :index="item.path" @click.native="toHome">
+          <el-menu-item :index="item.path">
             <i :class="item.icon" class="icon iconfont"></i>
             <span slot="title">{{ item.title }}</span>
           </el-menu-item>
@@ -58,12 +56,7 @@
 </template>
 
 <script>
-// import sidebarItems from './sidebar_items'
 export default {
-  components: {
-    // sidebarItems,
-  },
-
   data() {
     return {
       isCollapse: false,
@@ -85,10 +78,6 @@ export default {
 
   methods: {
     handleSelect() {},
-    // 首页
-    toHome() {
-      this.$router.push('/home')
-    },
   },
 }
 </script>
@@ -106,6 +95,9 @@ export default {
     background-color: #cdd8ec;
     @include change_BGC($BGC1);
     opacity: 0.7;
+  }
+  .el-menu-item {
+    min-width: 199px;
   }
   .logo {
     height: 60px;
