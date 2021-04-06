@@ -94,7 +94,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/styles/mixin.scss';
 .header {
-  background-color: #cdd8ec;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
   @include change_BGC($BGC1);
   height: 60px;
   display: flex;
