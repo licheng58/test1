@@ -17,60 +17,18 @@
       text-color="#fff"
       unique-opened
     >
-      <!-- <span :key="index" v-for="(item, index) in menuList"> -->
-      <!-- 多层菜单栏 -->
-      <!-- <template
-          v-if="
-            item.children &&
-              item.children.length > 0 &&
-              item.path !== '/login' &&
-              item.title !== '首页'
-          "
-      >-->
-      <!-- 第2层菜单栏 -->
-      <!-- <el-submenu :index="item.path">
-            <template slot="title">
-              <i :class="item.icon" class="icon iconfont"></i>
-              <span>{{ item.title }}</span>
-            </template>
-            <span :key="index2" v-for="(item2, index2) in item.children">
-              <template>
-                <el-menu-item :index="item2.path">
-                  <i :class="item2.icon" class="icon iconfont"></i>
-                  <span>{{ item2.title }}</span>
-                </el-menu-item>
-              </template>
-            </span>
-          </el-submenu>
-      </template>-->
-      <!-- 一层菜单栏 -->
-      <!-- <template v-if="item.title === '首页'">
-          <el-menu-item :index="item.path">
-            <i :class="item.icon" class="icon iconfont"></i>
-            <span slot="title">{{ item.title }}</span>
-          </el-menu-item>
-        </template>
-      </span>-->
-      <el-submenu :index="item.path" :key="index" v-for="(item, index) in menuList">
-        <template slot="title">
-          <i :class="item.icon" class="icon iconfont"></i>
-          <span>{{ item.title }}</span>
-        </template>
-        <el-menu-item-group :key="index2" v-for="(item2, index2) in item.children">
-          <template>
-            <el-menu-item :index="item2.path">
-              <i :class="item2.icon" class="icon iconfont"></i>
-              <span>{{ item2.title }}</span>
-            </el-menu-item>
-          </template>
-        </el-menu-item-group>
-      </el-submenu>
+      <sidebar-item :menuList="menuList"></sidebar-item>
     </el-menu>
   </div>
 </template>
 
 <script>
+import sidebarItem from './sidebarItem.vue'
 export default {
+  components: {
+    sidebarItem,
+  },
+
   data() {
     return {
       isCollapse: false,
