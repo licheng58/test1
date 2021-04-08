@@ -2,41 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-const routes = [{
-    path: '/login',
-    name: 'Login',
-    title: '登录',
-    component: () => import('@/views/login/login.vue'),
-    meta: {
-      title: '登录',
-    },
-  },
-  {
-    path: '/404',
-    title: '404',
-    component: () => import('@/views/404.vue'),
-    meta: {
-      title: '404',
-    },
-  },
-  {
-    path: '',
-    redirect: '/home',
-    icon: 'icon-yonghu',
-    title: '首页',
-    component: () => import('@/views/layout/layout.vue'),
-    children: [{
-      path: '/home',
-      name: 'Home',
-      icon: 'icon-yonghu',
-      title: '首页',
-      component: () => import('@/views/home/home'),
-      meta: {
-        title: '首页',
-      },
-    }, ],
-  },
-
+export const asyncRouterMap = [
   {
     path: '/pro',
     redirect: '/pro/pro_list',
@@ -46,7 +12,8 @@ const routes = [{
     meta: {
       title: '商品',
     },
-    children: [{
+    children: [
+      {
         path: '/pro_list',
         name: 'pro_list',
         icon: 'icon-yonghu',
@@ -98,7 +65,6 @@ const routes = [{
           title: '品牌管理',
         },
       },
-
     ],
   },
 
@@ -111,7 +77,8 @@ const routes = [{
     meta: {
       title: '订单',
     },
-    children: [{
+    children: [
+      {
         path: '/order_list',
         name: 'order_list',
         icon: 'icon-yonghu',
@@ -150,10 +117,8 @@ const routes = [{
         meta: {
           title: '退货原因设置',
         },
-      }
-
-
-    ]
+      },
+    ],
   },
   {
     path: '/sem',
@@ -164,7 +129,8 @@ const routes = [{
     meta: {
       title: '营销',
     },
-    children: [{
+    children: [
+      {
         path: '/active_list',
         name: 'active_list',
         icon: 'icon-yonghu',
@@ -189,7 +155,8 @@ const routes = [{
         name: 'brand_recommend',
         icon: 'icon-yonghu',
         title: '品牌推荐',
-        component: () => import('@/views/sem/brandRecommend/brandRecommend.vue'),
+        component: () =>
+          import('@/views/sem/brandRecommend/brandRecommend.vue'),
         meta: {
           title: '品牌推荐',
         },
@@ -209,7 +176,8 @@ const routes = [{
         name: 'popularity_recommend',
         icon: 'icon-yonghu',
         title: '人气推荐',
-        component: () => import('@/views/sem/popularityRecommend/popularityRecommend.vue'),
+        component: () =>
+          import('@/views/sem/popularityRecommend/popularityRecommend.vue'),
         meta: {
           title: '人气推荐',
         },
@@ -219,7 +187,8 @@ const routes = [{
         name: 'special_recommend',
         icon: 'icon-yonghu',
         title: '专题推荐',
-        component: () => import('@/views/sem/specialRecommend/specialRecommend.vue'),
+        component: () =>
+          import('@/views/sem/specialRecommend/specialRecommend.vue'),
         meta: {
           title: '专题推荐',
         },
@@ -233,9 +202,8 @@ const routes = [{
         meta: {
           title: '广告列表',
         },
-      }
-
-    ]
+      },
+    ],
   },
   {
     path: '/role',
@@ -246,7 +214,8 @@ const routes = [{
     meta: {
       title: '权限',
     },
-    children: [{
+    children: [
+      {
         path: '/user_list',
         name: 'user_list',
         icon: 'icon-yonghu',
@@ -285,14 +254,53 @@ const routes = [{
         meta: {
           title: '资源列表',
         },
-      }
-    ]
+      },
+    ],
+  },
+]
+
+export const constantRouterMap = [
+  {
+    path: '/login',
+    name: 'Login',
+    title: '登录',
+    component: () => import('@/views/login/login.vue'),
+    meta: {
+      title: '登录',
+    },
+  },
+  {
+    path: '/404',
+    title: '404',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      title: '404',
+    },
+  },
+  {
+    path: '/',
+    redirect: '/home',
+    icon: 'icon-yonghu',
+    title: '首页',
+    component: () => import('@/views/layout/layout.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        icon: 'icon-yonghu',
+        title: '首页',
+        component: () => import('@/views/home/home'),
+        meta: {
+          title: '首页',
+        },
+      },
+    ],
   },
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  routes,
+  routes: constantRouterMap,
 })
 
 export default router

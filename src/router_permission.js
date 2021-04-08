@@ -2,13 +2,8 @@ import router from '@/router'
 import store from '@/store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import {
-  Message
-} from 'element-ui'
-import {
-  getToken
-} from '@/utils/cookie' // 验权
-
+import { Message } from 'element-ui'
+import { getToken } from '@/utils/cookie' // 验权
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
@@ -17,13 +12,14 @@ router.beforeEach((to, from, next) => {
   if (getToken()) {
     if (to.path === '/login') {
       next({
-        path: '/'
+        path: '/login',
       })
       NProgress.done()
     } else {
       // 如果path不是login页面，判断路由数组长度，如果为空，发送请求获取权限菜单，如果有权限菜单，就放行
       if (store.getters.roles.length === 0) {
-        store.dispatch('GetUserRoles').then(res => { // 拉取用户信息
+        store.dispatch('GetUserRoles').then((res) => {
+          // 拉取用户信息
           // console.log(res);
 
           next()
@@ -48,6 +44,7 @@ router.beforeEach((to, from, next) => {
           //   })
         })
       } else {
+        // 如果有哦权限参数
         next()
       }
     }
