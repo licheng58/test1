@@ -1,11 +1,17 @@
-import { loginApi, getUserInfo } from '@/views/login/api'
-import { setToken, getToken, removeToken } from '@/utils/cookie'
+import {
+  loginApi,
+  getUserInfo
+} from '@/views/login/api'
+import {
+  setToken,
+  getToken,
+  removeToken
+} from '@/utils/cookie'
 const user = {
   state: {
     token: getToken(),
     roles: [],
     username: '',
-    icon: '',
   },
 
   mutations: {
@@ -22,15 +28,14 @@ const user = {
       state.username = payload
     },
 
-    // icon
-    SET_ICON: (state, payload) => {
-      state.icon = payload
-    },
+
   },
 
   actions: {
     // 登录
-    Login({ commit }, loginForm) {
+    Login({
+      commit
+    }, loginForm) {
       return new Promise((resolve, reject) => {
         loginApi(loginForm)
           .then((res) => {
@@ -47,20 +52,21 @@ const user = {
     },
 
     // 获取userinfo
-    GetUserRoles({ commit }) {
+    GetUserRoles({
+      commit
+    }) {
       return new Promise((resolve, reject) => {
         getUserInfo()
           .then((res) => {
-            console.log(res)
+            // console.log(res)
             const data = res.data
             if (data.roles && data.roles.length > 0) {
-              commit('SET_USER', data.roles)
+              commit('SET_USER', data.roles) //权限名称
             } else {
               reject('error=roles')
             }
-            commit('SET_USERNAME', data.username)
-            commit('SET_ICON', data.icon)
-            resolve()
+            commit('SET_USERNAME', data.username) //用户名
+            resolve(res)
           })
           .catch((error) => {
             reject(error)
@@ -69,7 +75,9 @@ const user = {
     },
 
     // 前端 登出
-    FedLogOut({ commit }) {
+    FedLogOut({
+      commit
+    }) {
       return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         removeToken()

@@ -2,8 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-export const asyncRouterMap = [
-  {
+export const asyncRouterMap = [{
     path: '/pro',
     redirect: '/pro/pro_list',
     icon: 'icon-yonghu',
@@ -12,8 +11,7 @@ export const asyncRouterMap = [
     meta: {
       title: '商品',
     },
-    children: [
-      {
+    children: [{
         path: '/pro_list',
         name: 'pro_list',
         icon: 'icon-yonghu',
@@ -77,8 +75,7 @@ export const asyncRouterMap = [
     meta: {
       title: '订单',
     },
-    children: [
-      {
+    children: [{
         path: '/order_list',
         name: 'order_list',
         icon: 'icon-yonghu',
@@ -129,8 +126,7 @@ export const asyncRouterMap = [
     meta: {
       title: '营销',
     },
-    children: [
-      {
+    children: [{
         path: '/active_list',
         name: 'active_list',
         icon: 'icon-yonghu',
@@ -214,8 +210,7 @@ export const asyncRouterMap = [
     meta: {
       title: '权限',
     },
-    children: [
-      {
+    children: [{
         path: '/user_list',
         name: 'user_list',
         icon: 'icon-yonghu',
@@ -259,8 +254,7 @@ export const asyncRouterMap = [
   },
 ]
 
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/login',
     name: 'Login',
     title: '登录',
@@ -283,18 +277,16 @@ export const constantRouterMap = [
     icon: 'icon-yonghu',
     title: '首页',
     component: () => import('@/views/layout/layout.vue'),
-    children: [
-      {
-        path: '/home',
-        name: 'Home',
-        icon: 'icon-yonghu',
+    children: [{
+      path: '/home',
+      name: 'Home',
+      icon: 'icon-yonghu',
+      title: '首页',
+      component: () => import('@/views/home/home'),
+      meta: {
         title: '首页',
-        component: () => import('@/views/home/home'),
-        meta: {
-          title: '首页',
-        },
       },
-    ],
+    }, ],
   },
 ]
 
@@ -302,5 +294,8 @@ const router = new VueRouter({
   mode: 'history',
   routes: constantRouterMap,
 })
+
+
+
 
 export default router

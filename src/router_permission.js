@@ -1,53 +1,52 @@
-import router from '@/router'
+import router from './router/index'
 import store from '@/store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import { Message } from 'element-ui'
-import { getToken } from '@/utils/cookie' // 验权
+import {
+  Message
+} from 'element-ui'
+import {
+  getToken
+} from '@/utils/cookie' // 验权
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
+  // console.log(to);
   NProgress.start()
-  // 存在token,path为/login时，跳转到首页
+  // 存在token
   if (getToken()) {
+    // 1-path为/login时，跳转到首页
     if (to.path === '/login') {
       next({
-        path: '/login',
+        path: '/',
       })
       NProgress.done()
     } else {
-      // 如果path不是login页面，判断路由数组长度，如果为空，发送请求获取权限菜单，如果有权限菜单，就放行
+      // 2-store中权限数组不为空-放行 ，如果为空，获取数据，如果执行刷新 ，那么store路由为空，此时需要重新添加路由
       if (store.getters.roles.length === 0) {
         store.dispatch('GetUserRoles').then((res) => {
-          // 拉取用户信息
-          // console.log(res);
+          let menus = res.data.menus; //路由数组
+          let username = res.data.username; //用户名
+          store.dispatch('GenerateRoutes', {
+            menus,
+            username
+          }).then(() => {
+            console.log(store.getters.addRouters);
+            router.addRoutes(store.getters.addRouters);
+            console.log(router);
+            next({
+              ...to,
+              replace: true
+            })
 
-          next()
-          // let menus = res.data.menus;
-          // let username = res.data.username;
-          //   store.dispatch('GenerateRoutes', {
-          //     menus,
-          //     username
-          //   }).then(() => { // 生成可访问的路由表
-          //     router.addRoutes(store.getters.addRouters); // 动态添加可访问路由表
-          //     next({
-          //       ...to,
-          //       replace: true
-          //     })
-          //   })
-          // }).catch((err) => {
-          //   store.dispatch('FedLogOut').then(() => {
-          //     Message.error(err || 'Verification failed, please login again')
-          //     next({
-          //       path: '/'
-          //     })
-          //   })
+          })
+
         })
       } else {
-        // 如果有哦权限参数
         next()
       }
     }
+
   } else {
     // 如果没有token，如果是login页面就放行，否者就跳转到登录页面
     if (whiteList.indexOf(to.path) !== -1) {
