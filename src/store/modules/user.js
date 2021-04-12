@@ -1,12 +1,7 @@
-import {
-  loginApi,
-  getUserInfo
-} from '@/views/login/api'
-import {
-  setToken,
-  getToken,
-  removeToken
-} from '@/utils/cookie'
+import { loginApi, getUserInfo } from '@/views/login/api'
+import { logout } from '@/views/layout/api'
+import { setToken, getToken, removeToken } from '@/utils/cookie'
+import router from '../../router'
 const user = {
   state: {
     token: getToken(),
@@ -27,15 +22,11 @@ const user = {
     SET_USERNAME: (state, payload) => {
       state.username = payload
     },
-
-
   },
 
   actions: {
     // 登录
-    Login({
-      commit
-    }, loginForm) {
+    Login({ commit }, loginForm) {
       return new Promise((resolve, reject) => {
         loginApi(loginForm)
           .then((res) => {
@@ -52,9 +43,7 @@ const user = {
     },
 
     // 获取userinfo
-    GetUserRoles({
-      commit
-    }) {
+    GetUserRoles({ commit }) {
       return new Promise((resolve, reject) => {
         getUserInfo()
           .then((res) => {
@@ -75,13 +64,23 @@ const user = {
     },
 
     // 前端 登出
-    FedLogOut({
-      commit
-    }) {
+    FedLogOut({ commit }) {
       return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         removeToken()
         resolve()
+      })
+    },
+
+    // 系统退出
+    Logout({ commit }) {
+      return new Promise((resolve, reject) => {
+        logout().then((res) => {
+          removeToken()
+          // commit('SET_TOKEN', '')
+          // commit('SET_USER', [])退出页面刷新后 此操作可不做
+          resolve()
+        })
       })
     },
   },

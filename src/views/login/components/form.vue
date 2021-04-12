@@ -30,7 +30,8 @@
             size="small"
             style="border-radius: 5px;  width: 100%;"
             type="primary"
-          >确定</el-button>
+            >确定</el-button
+          >
         </div>
       </el-col>
     </el-row>
@@ -40,8 +41,8 @@
 <script>
 import { setCookie } from '@/utils/supports'
 const loginForm = {
-  username: '',
-  password: '',
+  username: 'admin',
+  password: 'macro123',
 }
 export default {
   data() {

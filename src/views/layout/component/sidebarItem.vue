@@ -9,7 +9,7 @@
       >
         <template slot="title">
           <i :class="item.icon" class="icon iconfont"></i>
-          <span>{{ item.title }}</span>
+          <span v-if="isCollapse === false">{{ item.title }}</span>
         </template>
 
         <div v-if="item.children">
@@ -18,19 +18,18 @@
             :key="cIndex + 'copy'"
           >
             <el-menu-item :index="cItem.path">
-              <i :class="item.icon" class="icon iconfont"></i
+              <i :class="cItem.icon" class="icon iconfont"></i
               >{{ cItem.title }}</el-menu-item
             >
           </el-menu-item-group>
         </div>
       </el-submenu>
-      <router-link
-        v-if="item.title !== '登录' && item.title !== '404'"
-        :to="item.path"
-      >
+      <router-link v-if="item.title === '首页'" :to="item.path">
         <el-menu-item :index="item.path">
           <i :class="item.icon" class="icon iconfont"></i
-          >{{ item.title }}</el-menu-item
+          ><span v-if="isCollapse === false">{{
+            item.title
+          }}</span></el-menu-item
         >
       </router-link>
     </div>
@@ -43,6 +42,10 @@ export default {
   props: {
     menuList: {
       type: Array,
+    },
+    isCollapse: {
+      type: Boolean,
+      default: false,
     },
   },
 

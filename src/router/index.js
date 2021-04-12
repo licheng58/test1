@@ -2,19 +2,21 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-export const asyncRouterMap = [{
+export const asyncRouterMap = [
+  {
     path: '/pro',
     redirect: '/pro/pro_list',
-    icon: 'icon-yonghu',
+    icon: 'icon-xinpin_huaban1',
     title: '商品',
     component: () => import('@/views/layout/layout.vue'),
     meta: {
       title: '商品',
     },
-    children: [{
+    children: [
+      {
         path: '/pro_list',
         name: 'pro_list',
-        icon: 'icon-yonghu',
+        icon: 'shangpinliebiao_huaban',
         title: '商品列表',
         component: () => import('@/views/pro/proList/proList.vue'),
         meta: {
@@ -24,7 +26,7 @@ export const asyncRouterMap = [{
       {
         path: '/add_pro',
         name: 'add_pro',
-        icon: 'icon-yonghu',
+        icon: 'tianjiashangpin',
         title: '添加商品',
         component: () => import('@/views/pro/addPro/addPro.vue'),
         meta: {
@@ -34,7 +36,7 @@ export const asyncRouterMap = [{
       {
         path: '/pro_categroy',
         name: 'pro_categroy',
-        icon: 'icon-yonghu',
+        icon: 'icon-shangpinfenlei',
         title: '商品分类',
         component: () => import('@/views/pro/proCategroy/proCategroy.vue'),
         meta: {
@@ -45,7 +47,7 @@ export const asyncRouterMap = [{
       {
         path: '/pro_type',
         name: 'pro_type',
-        icon: 'icon-yonghu',
+        icon: 'icon-shangpinfenlei24',
         title: '商品类型',
         component: () => import('@/views/pro/proType/proType.vue'),
         meta: {
@@ -56,7 +58,7 @@ export const asyncRouterMap = [{
       {
         path: '/brand_manage',
         name: 'brand_manage',
-        icon: 'icon-yonghu',
+        icon: 'icon-pinpai',
         title: '品牌管理',
         component: () => import('@/views/pro/brandManage/brandManage.vue'),
         meta: {
@@ -69,16 +71,17 @@ export const asyncRouterMap = [{
   {
     path: '/order',
     redirect: '/order/order_list',
-    icon: 'icon-yonghu',
+    icon: 'icon-dingdan',
     title: '订单',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '订单',
     },
-    children: [{
+    children: [
+      {
         path: '/order_list',
         name: 'order_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-dingdan-',
         title: '订单列表',
         component: () => import('@/views/order/orderList/orderList.vue'),
         meta: {
@@ -88,7 +91,7 @@ export const asyncRouterMap = [{
       {
         path: '/order_set',
         name: 'order_set',
-        icon: 'icon-yonghu',
+        icon: 'icon-shezhi',
         title: '订单设置',
         component: () => import('@/views/order/orderSet/orderSet.vue'),
         meta: {
@@ -98,7 +101,7 @@ export const asyncRouterMap = [{
       {
         path: '/order_return',
         name: 'order_return',
-        icon: 'icon-yonghu',
+        icon: 'icon-tuihuo',
         title: '退货申请处理',
         component: () => import('@/views/order/orderReturn/orderReturn.vue'),
         meta: {
@@ -108,7 +111,7 @@ export const asyncRouterMap = [{
       {
         path: '/order_reason',
         name: 'order_reason',
-        icon: 'icon-yonghu',
+        icon: 'icon-dingdan',
         title: '退货原因设置',
         component: () => import('@/views/order/orderReason/orderReason.vue'),
         meta: {
@@ -120,16 +123,17 @@ export const asyncRouterMap = [{
   {
     path: '/sem',
     redirect: '/sem/active_list',
-    icon: 'icon-yonghu',
+    icon: 'icon-pinpai',
     title: '营销',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '营销',
     },
-    children: [{
+    children: [
+      {
         path: '/active_list',
         name: 'active_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-miaosha',
         title: '秒杀活动列表',
         component: () => import('@/views/sem/activeList/activeList.vue'),
         meta: {
@@ -139,7 +143,7 @@ export const asyncRouterMap = [{
       {
         path: '/discount_list',
         name: 'discount_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-youhuiquan',
         title: '优惠券列表',
         component: () => import('@/views/sem/discountList/discountList.vue'),
         meta: {
@@ -149,7 +153,7 @@ export const asyncRouterMap = [{
       {
         path: '/brand_recommend',
         name: 'brand_recommend',
-        icon: 'icon-yonghu',
+        icon: 'icon-pinpai',
         title: '品牌推荐',
         component: () =>
           import('@/views/sem/brandRecommend/brandRecommend.vue'),
@@ -160,7 +164,7 @@ export const asyncRouterMap = [{
       {
         path: '/new_pro',
         name: 'new_pro',
-        icon: 'icon-yonghu',
+        icon: 'icon-shangpin',
         title: '新品推荐',
         component: () => import('@/views/sem/newPro/newPro.vue'),
         meta: {
@@ -170,7 +174,7 @@ export const asyncRouterMap = [{
       {
         path: '/popularity_recommend',
         name: 'popularity_recommend',
-        icon: 'icon-yonghu',
+        icon: 'icon-tuijian',
         title: '人气推荐',
         component: () =>
           import('@/views/sem/popularityRecommend/popularityRecommend.vue'),
@@ -181,7 +185,7 @@ export const asyncRouterMap = [{
       {
         path: '/special_recommend',
         name: 'special_recommend',
-        icon: 'icon-yonghu',
+        icon: 'icon-zhuanti',
         title: '专题推荐',
         component: () =>
           import('@/views/sem/specialRecommend/specialRecommend.vue'),
@@ -192,7 +196,7 @@ export const asyncRouterMap = [{
       {
         path: '/notice_list',
         name: 'notice_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-guanggao',
         title: '广告列表',
         component: () => import('@/views/sem/noticeList/noticeList.vue'),
         meta: {
@@ -204,16 +208,17 @@ export const asyncRouterMap = [{
   {
     path: '/role',
     redirect: '/pro/user_list',
-    icon: 'icon-yonghu',
+    icon: 'icon-renqi',
     title: '权限',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '权限',
     },
-    children: [{
+    children: [
+      {
         path: '/user_list',
         name: 'user_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-renqi',
         title: '用户列表',
         component: () => import('@/views/role/userList/userList.vue'),
         meta: {
@@ -223,17 +228,17 @@ export const asyncRouterMap = [{
       {
         path: '/role_list',
         name: 'role_list',
-        icon: 'icon-yonghu',
-        title: '用户列表',
+        icon: 'icon-ziyuan',
+        title: '用户权限',
         component: () => import('@/views/role/roleList/roleList.vue'),
         meta: {
-          title: '用户列表',
+          title: '用户权限',
         },
       },
       {
         path: '/menu_list',
         name: 'menu_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-dingdan',
         title: '菜单列表',
         component: () => import('@/views/role/menuList/menuList.vue'),
         meta: {
@@ -243,7 +248,7 @@ export const asyncRouterMap = [{
       {
         path: '/resource_list',
         name: 'resource_list',
-        icon: 'icon-yonghu',
+        icon: 'icon-shangpinfenlei24',
         title: '资源列表',
         component: () => import('@/views/role/resourceList/resourceList.vue'),
         meta: {
@@ -254,7 +259,8 @@ export const asyncRouterMap = [{
   },
 ]
 
-export const constantRouterMap = [{
+export const constantRouterMap = [
+  {
     path: '/login',
     name: 'Login',
     title: '登录',
@@ -274,19 +280,21 @@ export const constantRouterMap = [{
   {
     path: '/',
     redirect: '/home',
-    icon: 'icon-yonghu',
+    icon: 'icon-miaosha',
     title: '首页',
     component: () => import('@/views/layout/layout.vue'),
-    children: [{
-      path: '/home',
-      name: 'Home',
-      icon: 'icon-yonghu',
-      title: '首页',
-      component: () => import('@/views/home/home'),
-      meta: {
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        icon: 'icon-shouye',
         title: '首页',
+        component: () => import('@/views/home/home'),
+        meta: {
+          title: '首页',
+        },
       },
-    }, ],
+    ],
   },
 ]
 
@@ -294,8 +302,5 @@ const router = new VueRouter({
   mode: 'history',
   routes: constantRouterMap,
 })
-
-
-
 
 export default router

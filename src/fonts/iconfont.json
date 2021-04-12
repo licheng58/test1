@@ -6,6 +6,139 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3240132",
+      "name": "商品分类",
+      "font_class": "shangpinfenlei",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "3401713",
+      "name": "人气",
+      "font_class": "renqi",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "5648958",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "6240909",
+      "name": "退货单",
+      "font_class": "ziyuan",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "7440205",
+      "name": "优惠券",
+      "font_class": "youhuiquan",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "10056840",
+      "name": "专题",
+      "font_class": "zhuanti",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "11138650",
+      "name": "商品列表_画板 1",
+      "font_class": "shangpinliebiao_huaban",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "11909704",
+      "name": "订单、列表",
+      "font_class": "dingdan-",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "13401421",
+      "name": "品牌",
+      "font_class": "pinpai",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "14444798",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "15055281",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "17477411",
+      "name": "商品分类@24",
+      "font_class": "shangpinfenlei24",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "17967650",
+      "name": "秒杀",
+      "font_class": "miaosha",
+      "unicode": "eebb",
+      "unicode_decimal": 61115
+    },
+    {
+      "icon_id": "18798934",
+      "name": "退货",
+      "font_class": "tuihuo",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "18866684",
+      "name": "添加商品",
+      "font_class": "tianjiashangpin",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "18939034",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "19317242",
+      "name": "广告",
+      "font_class": "guanggao",
+      "unicode": "f094",
+      "unicode_decimal": 61588
+    },
+    {
+      "icon_id": "19465428",
+      "name": "商品",
+      "font_class": "shangpin",
+      "unicode": "f0fb",
+      "unicode_decimal": 61691
+    },
+    {
+      "icon_id": "19690132",
+      "name": "新 品",
+      "font_class": "xinpin_huaban1",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
       "icon_id": "5441008",
       "name": "用户",
       "font_class": "yonghu",

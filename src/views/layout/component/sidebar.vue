@@ -1,6 +1,7 @@
 <template>
   <div class="side">
-    <div class="logo"></div>
+    <div class="logo" v-if="isCollapse === false"></div>
+    <div class="logo2" v-else></div>
     <!-- :default-active 一进页面默认显示的页面
               unique-opened 保持一个子菜单的打开
               router 采用路由模式 菜单上的index就是点击跳转的页面
@@ -17,7 +18,10 @@
       text-color="#fff"
       unique-opened
     >
-      <sidebar-item :menuList="menuList"></sidebar-item>
+      <sidebar-item
+        :menuList="menuList"
+        :isCollapse="isCollapse"
+      ></sidebar-item>
     </el-menu>
   </div>
 </template>
@@ -37,7 +41,7 @@ export default {
   },
 
   created() {
-    this.$bus.$on('commandSideBar', v => {
+    this.$bus.$on('commandSideBar', (v) => {
       this.isCollapse = v
     })
     this.menuList = this.$router.options.routes
@@ -82,6 +86,12 @@ export default {
   }
   .iconfont {
     margin-right: 5px;
+  }
+  .logo2 {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background: url('../../../images/logo.jpg') no-repeat center / 80%;
   }
 }
 </style>
