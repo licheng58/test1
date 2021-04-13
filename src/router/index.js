@@ -16,7 +16,7 @@ export const asyncRouterMap = [
       {
         path: '/pro_list',
         name: 'pro_list',
-        icon: 'shangpinliebiao_huaban',
+        icon: 'icon-pinpai',
         title: '商品列表',
         component: () => import('@/views/pro/proList/proList.vue'),
         meta: {
@@ -26,7 +26,7 @@ export const asyncRouterMap = [
       {
         path: '/add_pro',
         name: 'add_pro',
-        icon: 'tianjiashangpin',
+        icon: 'icon-pinpai',
         title: '添加商品',
         component: () => import('@/views/pro/addPro/addPro.vue'),
         meta: {

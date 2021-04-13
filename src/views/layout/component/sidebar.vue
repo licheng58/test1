@@ -10,8 +10,9 @@
     <el-menu
       :collapse="isCollapse"
       :default-active="$route.path"
+      :collapse-transition="true"
       @select="handleSelect"
-      active-text-color="orangered"
+      active-text-color="orange"
       background-color="#2a3f54"
       class="el-menu-vertical-demo"
       router
@@ -64,7 +65,7 @@ export default {
   background-color: #fff;
   @include change_BGC($BGC1);
   .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 201px;
     min-height: 400px;
   }
   .el-menu {
@@ -72,7 +73,7 @@ export default {
     @include change_BGC($BGC1);
   }
   .el-menu-item {
-    // min-width: 199px;
+    min-width: 199px;
   }
   .logo {
     height: 60px;

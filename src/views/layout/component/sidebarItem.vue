@@ -55,4 +55,38 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.sidebar-item {
+  .el-menu-item.is-active {
+    background-color: #6b88a5 !important;
+  }
+}
+</style>
+<style>
+/*菜单关闭*/
+.sidebar-item .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+  -webkit-transform: rotateZ(-90deg) !important;
+  -ms-transform: rotate(-90deg) !important;
+  transform: rotateZ(-90deg) !important;
+}
+/*菜单展开*/
+.sidebar-item
+  .el-submenu.is-opened
+  > .el-submenu__title
+  .el-submenu__icon-arrow {
+  -webkit-transform: rotateZ(0deg) !important ;
+  -ms-transform: rotate(0deg) !important;
+  transform: rotateZ(0deg) !important;
+}
+.sidebar-item .el-submenu .el-menu-item,
+.sidebar-item .nest-menu .el-submenu > .el-submenu__title {
+  background-color: #1f2d3d !important;
+}
+
+.sidebar-item .el-menu-item-group__title {
+  padding: 0 40px !important;
+}
+.sidebar-item .iconfont {
+  margin-right: 12px;
+}
+</style>
