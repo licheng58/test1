@@ -17,12 +17,11 @@
       <!-- 面包屑 -->
       <div class="bread-crumb">
         <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>
-            <a href="/">活动管理</a>
-          </el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+          <el-breadcrumb-item
+            :key="index"
+            :to="item.path"
+            v-for="(item,index) in brandCrumbLists"
+          >{{item.meta.title}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
     </div>
@@ -30,27 +29,17 @@
     <div class="right">
       <!-- 头像 -->
       <div class="header-portrait">
-        <el-avatar
-          src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        ></el-avatar>
+        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
       </div>
       <!-- 退出操作 -->
-      <el-dropdown
-        @command="changeCommand"
-        style="margin-right:20px"
-        trigger="click"
-      >
+      <el-dropdown @command="changeCommand" style="margin-right:20px" trigger="click">
         <span class="el-dropdown-link">
           点我操作
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item class="clearfix" command="to_home"
-            >回到首页</el-dropdown-item
-          >
-          <el-dropdown-item class="clearfix" command="to_logout"
-            >退出</el-dropdown-item
-          >
+          <el-dropdown-item class="clearfix" command="to_home">回到首页</el-dropdown-item>
+          <el-dropdown-item class="clearfix" command="to_logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <!-- 主题色 -->
@@ -60,12 +49,8 @@
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item class="clearfix" command="a"
-            >神仙绿</el-dropdown-item
-          >
-          <el-dropdown-item class="clearfix" command="b"
-            >神仙蓝</el-dropdown-item
-          >
+          <el-dropdown-item class="clearfix" command="a">神仙绿</el-dropdown-item>
+          <el-dropdown-item class="clearfix" command="b">神仙蓝</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -78,6 +63,13 @@ export default {
     return {
       isCollapse: false,
     }
+  },
+
+  computed: {
+    // 面包屑列表
+    brandCrumbLists() {
+      return this.$route.matched
+    },
   },
 
   methods: {

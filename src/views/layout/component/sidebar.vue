@@ -10,19 +10,13 @@
     <el-menu
       :collapse="isCollapse"
       :default-active="$route.path"
-      :collapse-transition="true"
       @select="handleSelect"
       active-text-color="orange"
-      background-color="#2a3f54"
       class="el-menu-vertical-demo"
       router
       text-color="#fff"
-      unique-opened
     >
-      <sidebar-item
-        :menuList="menuList"
-        :isCollapse="isCollapse"
-      ></sidebar-item>
+      <sidebar-item :isCollapse="isCollapse" :menuList="menuList"></sidebar-item>
     </el-menu>
   </div>
 </template>
@@ -42,7 +36,7 @@ export default {
   },
 
   created() {
-    this.$bus.$on('commandSideBar', (v) => {
+    this.$bus.$on('commandSideBar', v => {
       this.isCollapse = v
     })
     this.menuList = this.$router.options.routes

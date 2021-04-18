@@ -1,37 +1,20 @@
 <template>
   <div class="sidebar-item">
-    <div v-for="(item, index) in menuList" :key="index">
-      <el-submenu
-        v-if="
-          item.title !== '首页' && item.title !== '登录' && item.title !== '404'
-        "
-        :index="item.path"
-      >
+    <div :key="index" v-for="(item, index) in menuList">
+      <el-submenu :index="item.path" v-if="
+          item.children&&item.title!=='首页'
+        ">
         <template slot="title">
           <i :class="item.icon" class="icon iconfont"></i>
           <span v-if="isCollapse === false">{{ item.title }}</span>
         </template>
-
-        <div v-if="item.children">
-          <el-menu-item-group
-            v-for="(cItem, cIndex) in item.children"
-            :key="cIndex + 'copy'"
-          >
-            <el-menu-item :index="cItem.path">
-              <i :class="cItem.icon" class="icon iconfont"></i
-              >{{ cItem.title }}</el-menu-item
-            >
-          </el-menu-item-group>
-        </div>
+        <!-- 递归 -->
+        <sidebar-item :menuList="item.children"></sidebar-item>
       </el-submenu>
-      <router-link v-if="item.title === '首页'" :to="item.path">
-        <el-menu-item :index="item.path">
-          <i :class="item.icon" class="icon iconfont"></i
-          ><span v-if="isCollapse === false">{{
-            item.title
-          }}</span></el-menu-item
-        >
-      </router-link>
+      <el-menu-item :index="item.path" v-else-if="item.title!=='404'&&item.title!=='登录'">
+        <i :class="item.icon" class="icon iconfont"></i>
+        <span v-if="isCollapse === false">{{ item.title }}</span>
+      </el-menu-item>
     </div>
   </div>
 </template>
@@ -57,8 +40,10 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar-item {
-  .el-menu-item.is-active {
+  .el-menu-item:hover,
+  .el-menu-item:focus {
     background-color: #6b88a5 !important;
+    color: #ffa500 !important;
   }
 }
 </style>
@@ -88,5 +73,20 @@ export default {
 }
 .sidebar-item .iconfont {
   margin-right: 12px;
+}
+
+.sidebar-item .el-submenu__title:hover,
+.sidebar-item .el-submenu__title:focus {
+  background-color: #6b88a5 !important;
+}
+
+.sidebar-item .el-submenu__title.is-active,
+.sidebar-item .el-submenu__title.is-active {
+  background-color: #6b88a5 !important;
+  color: #ffa500 !important;
+}
+
+.sidebar-item .el-menu-item:focus i {
+  color: #ffa500 !important;
 }
 </style>

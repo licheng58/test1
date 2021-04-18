@@ -2,18 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-export const asyncRouterMap = [
-  {
+export const asyncRouterMap = [{
     path: '/pro',
-    redirect: '/pro/pro_list',
+    redirect: '/pro_list',
     icon: 'icon-xinpin_huaban1',
     title: '商品',
     component: () => import('@/views/layout/layout.vue'),
     meta: {
       title: '商品',
     },
-    children: [
-      {
+    children: [{
         path: '/pro_list',
         name: 'pro_list',
         icon: 'icon-pinpai',
@@ -70,15 +68,14 @@ export const asyncRouterMap = [
 
   {
     path: '/order',
-    redirect: '/order/order_list',
+    redirect: '/order_list',
     icon: 'icon-dingdan',
     title: '订单',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '订单',
     },
-    children: [
-      {
+    children: [{
         path: '/order_list',
         name: 'order_list',
         icon: 'icon-dingdan-',
@@ -122,15 +119,14 @@ export const asyncRouterMap = [
   },
   {
     path: '/sem',
-    redirect: '/sem/active_list',
+    redirect: '/active_list',
     icon: 'icon-pinpai',
     title: '营销',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '营销',
     },
-    children: [
-      {
+    children: [{
         path: '/active_list',
         name: 'active_list',
         icon: 'icon-miaosha',
@@ -207,15 +203,14 @@ export const asyncRouterMap = [
   },
   {
     path: '/role',
-    redirect: '/pro/user_list',
+    redirect: '/user_list',
     icon: 'icon-renqi',
     title: '权限',
     component: () => import('../views/layout/layout.vue'),
     meta: {
       title: '权限',
     },
-    children: [
-      {
+    children: [{
         path: '/user_list',
         name: 'user_list',
         icon: 'icon-renqi',
@@ -259,8 +254,7 @@ export const asyncRouterMap = [
   },
 ]
 
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/login',
     name: 'Login',
     title: '登录',
@@ -283,18 +277,16 @@ export const constantRouterMap = [
     icon: 'icon-miaosha',
     title: '首页',
     component: () => import('@/views/layout/layout.vue'),
-    children: [
-      {
-        path: '/home',
-        name: 'Home',
-        icon: 'icon-shouye',
+    children: [{
+      path: '/home',
+      name: 'Home',
+      icon: 'icon-shouye',
+      title: '首页',
+      component: () => import('@/views/home/home'),
+      meta: {
         title: '首页',
-        component: () => import('@/views/home/home'),
-        meta: {
-          title: '首页',
-        },
       },
-    ],
+    }, ],
   },
 ]
 
