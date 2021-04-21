@@ -12,14 +12,13 @@ Vue.use(drag)
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' //element-样式
 import './styles/element-variables.scss' //更改主题颜色
-Vue.use(ElementUI) //使用elementUI
+// Vue.use(ElementUI) //使用elementUI
+Vue.use(ElementUI, { size: 'mini', zIndex: 3000 }) //使用elementUI
 
 const bus = new Vue()
 Vue.prototype.$bus = bus
 
-
 Vue.config.productionTip = false
-
 
 new Vue({
   router,

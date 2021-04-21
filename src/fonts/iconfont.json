@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1089293",
+      "name": "搜索",
+      "font_class": "buoumaotubiao13",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "1347690",
+      "name": "色块－搜索人",
+      "font_class": "sekuaisousuoren",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
       "icon_id": "3240132",
       "name": "商品分类",
       "font_class": "shangpinfenlei",
