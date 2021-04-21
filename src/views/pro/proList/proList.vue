@@ -20,29 +20,29 @@
 <script>
 const searchConfig = {
   seachForm: {
-    name1: null, //输入搜索
-    name2: null, //商品货号
-    name3: null, //商品分类
-    name4: null, //商品品牌
-    name5: null, //上架状态
-    name6: null, //审核状态
+    keyword: null, //输入搜索
+    productSn: null, //商品货号
+    selectProductCateValue: null, //商品分类
+    brandId: null, //商品品牌
+    publishStatus: null, //上架状态
+    verifyStatus: null, //审核状态
   },
   seachItems: [
     {
       id: 1,
-      key: 'name1',
+      key: 'keyword',
       label: '输入搜索',
       type: 'input',
     },
     {
       id: 2,
-      key: 'name2',
+      key: 'productSn',
       label: '商品货号',
       type: 'input',
     },
     {
       id: 3,
-      key: 'name3',
+      key: 'selectProductCateValue',
       label: '商品分类',
       type: 'select',
       options: [
@@ -70,7 +70,7 @@ const searchConfig = {
     },
     {
       id: 4,
-      key: 'name4',
+      key: 'brandId',
       label: '商品品牌',
       type: 'cascader',
       options: [
@@ -344,7 +344,7 @@ const searchConfig = {
     },
     {
       id: 5,
-      key: 'name5',
+      key: 'publishStatus',
       label: '上架状态',
       type: 'select',
       options: [
@@ -372,7 +372,7 @@ const searchConfig = {
     },
     {
       id: 6,
-      key: 'name6',
+      key: 'verifyStatus',
       label: '审核状态',
       type: 'select',
       options: [
@@ -511,7 +511,8 @@ const customFormConfig = {
 
 import searchBar from '@/components/searchBar'
 import customTable from '@/components/customTable'
-import customForm from '../../../components/customForm'
+import customForm from '@/components/customForm'
+import { getProList } from '../api'
 export default {
   components: {
     searchBar,
@@ -520,10 +521,28 @@ export default {
   },
   data() {
     return {
+      pageNum: 1,
+      pageSize: 5,
+      total: null,
       searchConfig, //搜索表单
       tableConfig, //table数据
       customFormConfig, //form数据
     }
+  },
+
+  created() {
+    this.git_list()
+  },
+
+  methods: {
+    async git_list() {
+      const params = {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize,
+      }
+      const res = await getProList(params)
+      console.log(res)
+    },
   },
 }
 </script>
