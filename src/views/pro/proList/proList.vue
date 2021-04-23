@@ -475,6 +475,13 @@ const customFormConfig = {
     age: 0,
     sex: null,
     desc: null,
+    likes: [],
+    age2: null,
+    age3: [],
+    time: '',
+    date: '',
+    data_time: '',
+    switch: true,
   },
   formItems: [
     {
@@ -505,6 +512,63 @@ const customFormConfig = {
       key: 'desc',
       type: 'input',
       inputType: 'textarea',
+    },
+    {
+      id: 5,
+      label: '爱好',
+      key: 'likes',
+      type: 'checkbox',
+      options: [
+        { id: 1, label: 0, value: '女' },
+        { id: 2, label: 1, value: '男' },
+      ],
+    },
+    {
+      id: 6,
+      label: '年龄',
+      key: 'age2',
+      type: 'select',
+      options: [
+        { id: 1, value: '0', label: '女' },
+        { id: 2, value: '1', label: '男' },
+        { id: 3, value: '2', label: '未知' },
+      ],
+    },
+    {
+      id: 7,
+      label: '年龄',
+      key: 'age3',
+      type: 'select',
+      multiple: true,
+      options: [
+        { id: 1, value: '0', label: '女' },
+        { id: 2, value: '1', label: '男' },
+        { id: 3, value: '2', label: '未知' },
+      ],
+    },
+    {
+      id: 8,
+      label: '时间',
+      key: 'time',
+      type: 'time',
+    },
+    {
+      id: 9,
+      label: '日期',
+      key: 'date',
+      type: 'date',
+    },
+    {
+      id: 9,
+      label: '日期时间',
+      key: 'date_time',
+      type: 'date_time',
+    },
+    {
+      id: 10,
+      label: 'switch',
+      key: 'switch',
+      type: 'switch',
     },
   ],
 }
