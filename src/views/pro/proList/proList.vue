@@ -573,6 +573,51 @@ const customFormConfig = {
   ],
 }
 
+const defaultForm = {
+  //   albumPics: null,//商品图片
+  // // brandId: 3
+  // brandName: null,//品牌名称
+  // deleteStatus: 0
+  // // description: null
+  // detailDesc: null
+  // detailHtml: null
+  // detailMobileHtml: null
+  // detailTitle: ""
+  // feightTemplateId: 0
+  // giftGrowth: 3788
+  // giftPoint: 3788
+  // id: 26
+  // keywords: ""
+  // lowStock: 0
+  // name: "华为 HUAWEI P20 "
+  // newStatus: null,//新品状态
+  // note: ""
+  // originalPrice: 4288
+  // pic: "http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/5ac1bf58Ndefaac16.jpg"
+  // previewStatus: 1
+  // price: 3788
+  // productAttributeCategoryId: 3
+  // productCategoryId: 19
+  // productCategoryName: "手机通讯"
+  // productSn: "6946605"
+  // promotionEndTime: null
+  // promotionPerLimit: 0
+  // promotionPrice: null
+  // promotionStartTime: null
+  // promotionType: 1
+  // publishStatus: 1
+  // recommandStatus: 1
+  // sale: 0
+  // serviceIds: "2,3,1"
+  // sort: 100
+  // stock: 1000
+  // subTitle: "AI智慧全面屏 6GB +64GB 亮黑色 全网通版 移动联通电信4G手机 双卡双待手机 双卡双待"
+  // unit: "件"
+  // usePointLimit: 0
+  // verifyStatus: 0
+  // weight: 0
+}
+
 import searchBar from '@/components/searchBar'
 import customTable from '@/components/customTable'
 import customForm from '@/components/customForm'
@@ -591,6 +636,8 @@ export default {
       searchConfig, //搜索表单
       tableConfig, //table数据
       customFormConfig, //form数据
+      defaultForm,
+      formData: {},
     }
   },
 
