@@ -6,10 +6,14 @@
 </template>
 
 <script>
-import proForm from '../component/proForm/index.vue'
+import proForm from '../component/proForm/proIndex'
 export default {
   components: {
     proForm,
+  },
+
+  data() {
+    return {}
   },
 }
 </script>
