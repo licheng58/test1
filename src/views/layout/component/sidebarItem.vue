@@ -1,9 +1,10 @@
 <template>
   <div class="sidebar-item">
     <div :key="index" v-for="(item, index) in menuList">
-      <el-submenu :index="item.path" v-if="
-          item.children&&item.title!=='首页'
-        ">
+      <el-submenu
+        :index="item.path"
+        v-if="item.children && item.title !== '首页' && item.hidden !== true"
+      >
         <template slot="title">
           <i :class="item.icon" class="icon iconfont"></i>
           <span v-if="isCollapse === false">{{ item.title }}</span>
@@ -11,7 +12,12 @@
         <!-- 递归 -->
         <sidebar-item :menuList="item.children"></sidebar-item>
       </el-submenu>
-      <el-menu-item :index="item.path" v-else-if="item.title!=='404'&&item.title!=='登录'">
+      <el-menu-item
+        :index="item.path"
+        v-else-if="
+          item.title !== '404' && item.title !== '登录' && item.hidden !== true
+        "
+      >
         <i :class="item.icon" class="icon iconfont"></i>
         <span v-if="isCollapse === false">{{ item.title }}</span>
       </el-menu-item>

@@ -11,8 +11,10 @@
         <!-- 主体 -->
         <el-main>
           <!-- 标签页 -->
-
-          <router-view />
+          <transition mode="out-in" name="fade">
+            <!-- <router-view :key="key"></router-view> -->
+            <router-view></router-view>
+          </transition>
         </el-main>
       </el-container>
     </el-container>

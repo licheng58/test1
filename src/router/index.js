@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-export const asyncRouterMap = [{
+export const asyncRouterMap = [
+  {
     path: '/pro',
     redirect: '/pro_list',
     icon: 'icon-xinpin_huaban1',
@@ -11,57 +12,147 @@ export const asyncRouterMap = [{
     meta: {
       title: '商品',
     },
-    children: [{
-        path: '/pro_list',
-        name: 'pro_list',
+    children: [
+      {
+        path: '/product',
+        name: 'product',
         icon: 'icon-pinpai',
         title: '商品列表',
-        component: () => import('@/views/pro/proList/proList.vue'),
+        component: () => import('../views/pro/product/index.vue'),
         meta: {
           title: '商品列表',
         },
       },
       {
-        path: '/add_pro',
-        name: 'add_pro',
+        path: '/addProduct',
+        name: 'addProduct',
         icon: 'icon-pinpai',
         title: '添加商品',
-        component: () => import('@/views/pro/addPro/addPro.vue'),
+        component: () => import('../views/pro/product/add.vue'),
         meta: {
           title: '添加商品',
         },
       },
       {
-        path: '/pro_categroy',
-        name: 'pro_categroy',
+        path: '/updateProduct',
+        name: 'updateProduct',
+        icon: 'icon-pinpai',
+        title: '修改商品',
+        component: () => import('../views/pro/product/update.vue'),
+        meta: {
+          title: '修改商品',
+        },
+        hidden: true,
+      },
+      {
+        path: '/productCate',
+        name: 'productCateList',
         icon: 'icon-shangpinfenlei',
         title: '商品分类',
-        component: () => import('@/views/pro/proCategroy/proCategroy.vue'),
+        component: () => import('../views/pro/productCate/index.vue'),
         meta: {
           title: '商品分类',
         },
       },
+      {
+        path: '/addProductCate',
+        name: 'addProductCate',
+        icon: 'icon-pinpai',
+        title: '添加分类',
+        component: () => import('../views/pro/productCate/add.vue'),
+        meta: {
+          title: '添加分类',
+        },
+        hidden: true,
+      },
+      {
+        path: '/updateProductCate',
+        name: 'updateProductCate',
+        icon: 'icon-pinpai',
+        title: '修改分类',
+        component: () => import('../views/pro/productCate/update.vue'),
+        meta: {
+          title: '修改分类',
+        },
+        hidden: true,
+      },
 
       {
-        path: '/pro_type',
-        name: 'pro_type',
+        path: '/ProductAttr',
+        name: 'ProductAttr',
         icon: 'icon-shangpinfenlei24',
         title: '商品类型',
-        component: () => import('@/views/pro/proType/proType.vue'),
+        component: () => import('../views/pro/productAttr/index.vue'),
         meta: {
           title: '商品类型',
         },
       },
+      {
+        path: '/addProductAttr',
+        name: 'addProductAttr',
+        icon: 'icon-shangpinfenlei24',
+        title: '添加商品类型',
+        component: () => import('../views/pro/productAttr/addProductAttr.vue'),
+        meta: {
+          title: '添加商品类型',
+        },
+        hidden: true,
+      },
+      {
+        path: '/updateProductAttr',
+        name: 'updateProductAttr',
+        icon: 'icon-shangpinfenlei24',
+        title: '修改商品类型',
+        component: () =>
+          import('../views/pro/productAttr/updateProductAttr.vue'),
+        meta: {
+          title: '修改商品类型',
+        },
+        hidden: true,
+      },
+      {
+        path: '/productAttrList',
+        name: 'productAttrList',
+        icon: 'icon-shangpinfenlei24',
+        title: '商品属性列表',
+        component: () => import('../views/pro/productAttr/productAttrList.vue'),
+        meta: {
+          title: '商品属性列表',
+        },
+        hidden: true,
+      },
 
       {
-        path: '/brand_manage',
-        name: 'brand_manage',
+        path: '/brand',
+        name: 'brand',
         icon: 'icon-pinpai',
         title: '品牌管理',
-        component: () => import('@/views/pro/brandManage/brandManage.vue'),
+        component: () => import('../views/pro/brand/index.vue'),
         meta: {
           title: '品牌管理',
         },
+      },
+      {
+        path: '/addBrand',
+        name: 'addBrand',
+        icon: 'icon-pinpai',
+        title: '新建商品管理',
+        component: () => import('../views/pro/brand/add.vue'),
+        meta: {
+          title: '新建商品管理',
+        },
+        hidden: true,
+      },
+      {
+        path: '/updateBrand',
+        name: 'updateBrand',
+        icon: 'icon-pinpai',
+        title: '修改商品管理',
+        component: () => import('../views/pro/brand/update.vue'),
+        meta: {
+          title: '修改商品管理',
+        },
+        hidden: true,
       },
     ],
   },
@@ -75,22 +166,34 @@ export const asyncRouterMap = [{
     meta: {
       title: '订单',
     },
-    children: [{
+    children: [
+      {
         path: '/order_list',
         name: 'order_list',
         icon: 'icon-dingdan-',
         title: '订单列表',
-        component: () => import('@/views/order/orderList/orderList.vue'),
+        component: () => import('@/views/order/orderList.vue'),
         meta: {
           title: '订单列表',
         },
+      },
+      {
+        path: '/order_detail',
+        name: 'order_detail',
+        icon: 'icon-dingdan-',
+        title: '订单详情',
+        component: () => import('@/views/order/orderDetail.vue'),
+        meta: {
+          title: '订单详情',
+        },
+        hidden: true,
       },
       {
         path: '/order_set',
         name: 'order_set',
         icon: 'icon-shezhi',
         title: '订单设置',
-        component: () => import('@/views/order/orderSet/orderSet.vue'),
+        component: () => import('@/views/order/orderSet.vue'),
         meta: {
           title: '订单设置',
         },
@@ -100,17 +203,28 @@ export const asyncRouterMap = [{
         name: 'order_return',
         icon: 'icon-tuihuo',
         title: '退货申请处理',
-        component: () => import('@/views/order/orderReturn/orderReturn.vue'),
+        component: () => import('@/views/order/apply/orderReturn.vue'),
         meta: {
           title: '退货申请处理',
         },
+      },
+      {
+        path: '/returnApplyDetail',
+        name: 'returnApplyDetail',
+        icon: 'icon-tuihuo',
+        title: '退货详情页',
+        component: () => import('@/views/order/apply/returnApplyDetail.vue'),
+        meta: {
+          title: '退货详情页',
+        },
+        hidden: true,
       },
       {
         path: '/order_reason',
         name: 'order_reason',
         icon: 'icon-dingdan',
         title: '退货原因设置',
-        component: () => import('@/views/order/orderReason/orderReason.vue'),
+        component: () => import('@/views/order/apply/orderReason.vue'),
         meta: {
           title: '退货原因设置',
         },
@@ -126,7 +240,8 @@ export const asyncRouterMap = [{
     meta: {
       title: '营销',
     },
-    children: [{
+    children: [
+      {
         path: '/active_list',
         name: 'active_list',
         icon: 'icon-miaosha',
@@ -137,14 +252,69 @@ export const asyncRouterMap = [{
         },
       },
       {
-        path: '/discount_list',
-        name: 'discount_list',
+        path: '/flashSession',
+        name: 'flashSession',
+        icon: 'icon-miaosha',
+        title: '秒杀时间段列表',
+        component: () => import('@/views/sem/activeList/flashSession.vue'),
+        meta: {
+          title: '秒杀时间段列表',
+        },
+        hidden: true,
+      },
+      {
+        path: '/selectSession',
+        name: 'selectSession',
+        icon: 'icon-miaosha',
+        title: '设置商品',
+        component: () => import('@/views/sem/activeList/selectSession.vue'),
+        meta: {
+          title: '设置商品',
+        },
+        hidden: true,
+      },
+      {
+        path: '/coupon',
+        name: 'coupon',
         icon: 'icon-youhuiquan',
         title: '优惠券列表',
-        component: () => import('@/views/sem/discountList/discountList.vue'),
+        component: () => import('@/views/sem/coupon/coupon.vue'),
         meta: {
           title: '优惠券列表',
         },
+      },
+      {
+        path: '/addCoupon',
+        name: 'addCoupon',
+        icon: 'icon-youhuiquan',
+        title: '新建优惠券列表',
+        component: () => import('@/views/sem/coupon/addCoupon.vue'),
+        meta: {
+          title: '新建优惠券列表',
+        },
+        hidden: true,
+      },
+      {
+        path: '/updateCoupon',
+        name: 'updateCoupon',
+        icon: 'icon-youhuiquan',
+        title: '修改优惠券列表',
+        component: () => import('@/views/sem/coupon/updateCoupon.vue'),
+        meta: {
+          title: '修改优惠券列表',
+        },
+        hidden: true,
+      },
+      {
+        path: '/couponHistory',
+        name: 'couponHistory',
+        icon: 'icon-youhuiquan',
+        title: '优惠券领取详情',
+        component: () => import('@/views/sem/coupon/history.vue'),
+        meta: {
+          title: '优惠券领取详情',
+        },
+        hidden: true,
       },
       {
         path: '/brand_recommend',
@@ -210,7 +380,8 @@ export const asyncRouterMap = [{
     meta: {
       title: '权限',
     },
-    children: [{
+    children: [
+      {
         path: '/user_list',
         name: 'user_list',
         icon: 'icon-renqi',
@@ -254,7 +425,8 @@ export const asyncRouterMap = [{
   },
 ]
 
-export const constantRouterMap = [{
+export const constantRouterMap = [
+  {
     path: '/login',
     name: 'Login',
     title: '登录',
@@ -277,16 +449,18 @@ export const constantRouterMap = [{
     icon: 'icon-miaosha',
     title: '首页',
     component: () => import('@/views/layout/layout.vue'),
-    children: [{
-      path: '/home',
-      name: 'Home',
-      icon: 'icon-shouye',
-      title: '首页',
-      component: () => import('@/views/home/home'),
-      meta: {
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        icon: 'icon-shouye',
         title: '首页',
+        component: () => import('@/views/home/home'),
+        meta: {
+          title: '首页',
+        },
       },
-    }, ],
+    ],
   },
 ]
 

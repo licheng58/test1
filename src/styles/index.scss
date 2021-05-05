@@ -1,4 +1,8 @@
 @import './element-ui.scss';
+@import'./element-variables.scss';
+@import'./mixin.scss';
+@import'./transition.scss';
+@import'./variables.scss';
 
 // 继承父组件box-sizing属性
 *,
@@ -40,6 +44,27 @@ body {
     clear: both;
     height: 0;
   }
+}
+
+//操作栏样式
+.operate-container {
+  margin-top: 20px;
+}
+
+.operate-container .btn-add {
+  float: right;
+}
+
+//表格栏样式
+.table-container {
+  margin-top: 20px;
+}
+
+//分页栏样式
+.pagination-container {
+  display: inline-block;
+  float: right;
+  margin-top: 20px;
 }
 
 
