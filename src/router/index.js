@@ -416,11 +416,33 @@ export const asyncRouterMap = [
         path: '/role_list',
         name: 'role_list',
         icon: 'icon-ziyuan',
-        title: '用户权限',
+        title: '角色列表',
         component: () => import('@/views/role/roleList/roleList.vue'),
         meta: {
-          title: '用户权限',
+          title: '角色列表',
         },
+      },
+      {
+        path: '/allocMenu',
+        name: 'allocMenu',
+        icon: 'icon-ziyuan',
+        title: '分配菜单',
+        component: () => import('@/views/role/roleList/allocMenu.vue'),
+        meta: {
+          title: '分配菜单',
+        },
+        hidden: true,
+      },
+      {
+        path: '/allocResource',
+        name: 'allocResource',
+        icon: 'icon-ziyuan',
+        title: '分配资源',
+        component: () => import('@/views/role/roleList/allocResource.vue'),
+        meta: {
+          title: '分配资源',
+        },
+        hidden: true,
       },
       {
         path: '/menu_list',

@@ -16,7 +16,12 @@
       router
       text-color="#fff"
     >
-      <sidebar-item :isCollapse="isCollapse" :menuList="menuList"></sidebar-item>
+      <sidebar-item
+        :isCollapse="isCollapse"
+        :menuList="menuList"
+        style="overflow: auto;
+    height: 100%;"
+      ></sidebar-item>
     </el-menu>
   </div>
 </template>
@@ -36,7 +41,7 @@ export default {
   },
 
   created() {
-    this.$bus.$on('commandSideBar', v => {
+    this.$bus.$on('commandSideBar', (v) => {
       this.isCollapse = v
     })
     this.menuList = this.$router.options.routes
