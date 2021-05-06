@@ -369,6 +369,27 @@ export const asyncRouterMap = [
           title: '广告列表',
         },
       },
+      {
+        path: '/addAdvertise',
+        name: 'addAdvertise',
+        icon: 'icon-guanggao',
+        title: '新建广告',
+        component: () => import('@/views/sem/noticeList/add.vue'),
+        meta: {
+          title: '新建广告',
+        },
+      },
+
+      {
+        path: '/updateAdvertise',
+        name: 'updateAdvertise',
+        icon: 'icon-guanggao',
+        title: '修改广告',
+        component: () => import('@/views/sem/noticeList/update.vue'),
+        meta: {
+          title: '修改广告',
+        },
+      },
     ],
   },
   {

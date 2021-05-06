@@ -1,10 +1,494 @@
 <template>
-  <div class="brand-recommend">品牌推荐</div>
+  <!-- 品牌推荐 -->
+  <div class="brand-recommend">
+    <!-- 搜索 -->
+    <el-card class="filter-container" shadow="never">
+      <div>
+        <i class="el-icon-search"></i>
+        <span>筛选搜索</span>
+        <el-button
+          style="float:right"
+          type="primary"
+          @click="handleSearchList()"
+          size="small"
+        >
+          查询搜索
+        </el-button>
+        <el-button
+          style="float:right;margin-right: 15px"
+          @click="handleResetSearch()"
+          size="small"
+        >
+          重置
+        </el-button>
+      </div>
+      <div style="margin-top: 15px">
+        <el-form
+          :inline="true"
+          :model="listQuery"
+          size="small"
+          label-width="140px"
+        >
+          <el-form-item label="品牌名称：">
+            <el-input
+              v-model="listQuery.brandName"
+              class="input-width"
+              placeholder="品牌名称"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="推荐状态：">
+            <el-select
+              v-model="listQuery.recommendStatus"
+              placeholder="全部"
+              clearable
+              class="input-width"
+            >
+              <el-option
+                v-for="item in recommendOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-card>
+
+    <!-- 新建 -->
+    <el-card class="operate-container" shadow="never">
+      <i class="el-icon-tickets"></i>
+      <span>数据列表</span>
+      <el-button size="mini" class="btn-add" @click="handleSelectBrand()"
+        >选择品牌</el-button
+      >
+    </el-card>
+
+    <!-- table  -->
+    <el-table
+      ref="homeBrandTable"
+      :data="list"
+      style="width: 100%;"
+      @selection-change="handleSelectionChange"
+      v-loading="listLoading"
+      border
+    >
+      <el-table-column
+        type="selection"
+        width="60"
+        align="center"
+      ></el-table-column>
+      <el-table-column label="编号" width="120" align="center">
+        <template slot-scope="scope">{{ scope.row.id }}</template>
+      </el-table-column>
+      <el-table-column label="品牌名称" align="center">
+        <template slot-scope="scope">{{ scope.row.brandName }}</template>
+      </el-table-column>
+      <el-table-column label="是否推荐" width="200" align="center">
+        <template slot-scope="scope">
+          <el-switch
+            @change="handleRecommendStatusStatusChange(scope.$index, scope.row)"
+            :active-value="1"
+            :inactive-value="0"
+            v-model="scope.row.recommendStatus"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+      <el-table-column label="排序" width="160" align="center">
+        <template slot-scope="scope">{{ scope.row.sort }}</template>
+      </el-table-column>
+      <el-table-column label="状态" width="160" align="center">
+        <template slot-scope="scope">{{
+          scope.row.recommendStatus | formatRecommendStatus
+        }}</template>
+      </el-table-column>
+      <el-table-column label="操作" width="180" align="center">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="text"
+            @click="handleEditSort(scope.$index, scope.row)"
+            >设置排序
+          </el-button>
+          <el-button
+            size="mini"
+            type="text"
+            @click="handleDelete(scope.$index, scope.row)"
+            >删除
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <!-- 分页 -->
+    <div class="pagination-container">
+      <el-pagination
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        layout="total, sizes,prev, pager, next,jumper"
+        :page-size="listQuery.pageSize"
+        :page-sizes="[5, 10, 15]"
+        :current-page.sync="listQuery.pageNum"
+        :total="total"
+      >
+      </el-pagination>
+    </div>
+
+    <!-- 选择品牌弹框 -->
+    <el-dialog title="选择品牌" :visible.sync="selectDialogVisible" width="40%">
+      <el-input
+        v-model="dialogData.listQuery.keyword"
+        style="width: 250px;margin-bottom: 20px"
+        size="small"
+        placeholder="品牌名称搜索"
+      >
+        <el-button
+          slot="append"
+          icon="el-icon-search"
+          @click="handleSelectSearch()"
+        ></el-button>
+      </el-input>
+      <el-table
+        :data="dialogData.list"
+        @selection-change="handleDialogSelectionChange"
+        border
+      >
+        <el-table-column
+          type="selection"
+          width="60"
+          align="center"
+        ></el-table-column>
+        <el-table-column label="品牌名称" align="center">
+          <template slot-scope="scope">{{ scope.row.name }}</template>
+        </el-table-column>
+        <el-table-column label="相关" width="220" align="center">
+          <template slot-scope="scope">
+            商品：<span class="color-main">{{ scope.row.productCount }}</span>
+            评价：<span class="color-main">{{
+              scope.row.productCommentCount
+            }}</span>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pagination-container">
+        <el-pagination
+          background
+          @size-change="handleDialogSizeChange"
+          @current-change="handleDialogCurrentChange"
+          layout="prev, pager, next"
+          :current-page.sync="dialogData.listQuery.pageNum"
+          :page-size="dialogData.listQuery.pageSize"
+          :page-sizes="[5, 10, 15]"
+          :total="dialogData.total"
+        >
+        </el-pagination>
+      </div>
+      <div style="clear: both;"></div>
+      <div slot="footer">
+        <el-button size="small" @click="selectDialogVisible = false"
+          >取 消</el-button
+        >
+        <el-button
+          size="small"
+          type="primary"
+          @click="handleSelectDialogConfirm()"
+          >确 定</el-button
+        >
+      </div>
+    </el-dialog>
+
+    <!-- 设置排序弹框 -->
+    <el-dialog title="设置排序" :visible.sync="sortDialogVisible" width="40%">
+      <el-form :model="sortDialogData" label-width="150px">
+        <el-form-item label="排序：">
+          <el-input
+            v-model="sortDialogData.sort"
+            style="width: 200px"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer">
+        <el-button @click="sortDialogVisible = false" size="small"
+          >取 消</el-button
+        >
+        <el-button type="primary" @click="handleUpdateSort" size="small"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
-export default {}
+import {
+  fetchList,
+  updateRecommendStatus,
+  deleteHomeBrand,
+  createHomeBrand,
+  updateHomeBrandSort,
+} from '@/api/homeBrand'
+import { fetchList as fetchBrandList } from '@/api/brand'
+const defaultListQuery = {
+  pageNum: 1,
+  pageSize: 5,
+  brandName: null,
+  recommendStatus: null,
+}
+const defaultRecommendOptions = [
+  {
+    label: '未推荐',
+    value: 0,
+  },
+  {
+    label: '推荐中',
+    value: 1,
+  },
+]
+export default {
+  data() {
+    return {
+      listQuery: Object.assign({}, defaultListQuery),
+      recommendOptions: Object.assign({}, defaultRecommendOptions),
+      list: null,
+      total: null,
+      listLoading: false,
+      multipleSelection: [],
+      operates: [
+        {
+          label: '设为推荐',
+          value: 0,
+        },
+        {
+          label: '取消推荐',
+          value: 1,
+        },
+        {
+          label: '删除',
+          value: 2,
+        },
+      ],
+      operateType: null,
+      selectDialogVisible: false,
+      dialogData: {
+        list: null,
+        total: null,
+        multipleSelection: [],
+        listQuery: {
+          keyword: null,
+          pageNum: 1,
+          pageSize: 5,
+        },
+      },
+      sortDialogVisible: false,
+      sortDialogData: { sort: 0, id: null },
+    }
+  },
+
+  filters: {
+    formatRecommendStatus(status) {
+      if (status === 1) {
+        return '推荐中'
+      } else {
+        return '未推荐'
+      }
+    },
+  },
+
+  created() {
+    this.getList()
+  },
+
+  methods: {
+    // 获取
+    getList() {
+      this.listLoading = true
+      fetchList(this.listQuery).then((response) => {
+        this.listLoading = false
+        this.list = response.data.list
+        this.total = response.data.total
+      })
+    },
+
+    // 搜索
+    handleSearchList() {
+      this.listQuery.pageNum = 1
+      this.getList()
+    },
+
+    // 重置
+    handleResetSearch() {
+      this.listQuery = Object.assign({}, defaultListQuery)
+    },
+
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
+
+    handleSizeChange(val) {
+      this.listQuery.pageNum = 1
+      this.listQuery.pageSize = val
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.listQuery.pageNum = val
+      this.getList()
+    },
+
+    // 是否推荐
+    handleRecommendStatusStatusChange(index, row) {
+      this.updateRecommendStatusStatus(row.id, row.recommendStatus)
+    },
+
+    // 删除
+    handleDelete(index, row) {
+      this.deleteBrand(row.id)
+    },
+
+    // 选择品牌
+    handleSelectBrand() {
+      this.selectDialogVisible = true
+      this.getDialogList()
+    },
+
+    // 选择品牌弹框搜索
+    handleSelectSearch() {
+      this.getDialogList()
+    },
+
+    // 选择平牌子弹框分页
+    handleDialogSizeChange(val) {
+      this.dialogData.listQuery.pageNum = 1
+      this.dialogData.listQuery.pageSize = val
+      this.getDialogList()
+    },
+    handleDialogCurrentChange(val) {
+      this.dialogData.listQuery.pageNum = val
+      this.getDialogList()
+    },
+
+    // 选择品牌弹框checkbox
+    handleDialogSelectionChange(val) {
+      this.dialogData.multipleSelection = val
+    },
+
+    // 选择品牌弹框确定
+    handleSelectDialogConfirm() {
+      if (this.dialogData.multipleSelection < 1) {
+        this.$message({
+          message: '请选择一条记录',
+          type: 'warning',
+          duration: 1000,
+        })
+        return
+      }
+      let selectBrands = []
+      for (let i = 0; i < this.dialogData.multipleSelection.length; i++) {
+        selectBrands.push({
+          brandId: this.dialogData.multipleSelection[i].id,
+          brandName: this.dialogData.multipleSelection[i].name,
+        })
+      }
+      this.$confirm('使用要进行添加操作?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).then(() => {
+        createHomeBrand(selectBrands).then((response) => {
+          this.selectDialogVisible = false
+          this.dialogData.multipleSelection = []
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '添加成功!',
+          })
+        })
+      })
+    },
+
+    // 设置排序
+    handleEditSort(index, row) {
+      this.sortDialogVisible = true
+      this.sortDialogData.sort = row.sort
+      this.sortDialogData.id = row.id
+    },
+
+    // 设置排序弹框确定
+    handleUpdateSort() {
+      this.$confirm('是否要修改排序?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).then(() => {
+        updateHomeBrandSort(this.sortDialogData).then((response) => {
+          this.sortDialogVisible = false
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删除成功!',
+          })
+        })
+      })
+    },
+
+    // 修改推荐状态
+    updateRecommendStatusStatus(ids, status) {
+      this.$confirm('是否要修改推荐状态?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          let params = new URLSearchParams()
+          params.append('ids', ids)
+          params.append('recommendStatus', status)
+          updateRecommendStatus(params).then((response) => {
+            this.getList()
+            this.$message({
+              type: 'success',
+              message: '修改成功!',
+            })
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'success',
+            message: '已取消操作!',
+          })
+          this.getList()
+        })
+    },
+
+    // 删除推荐
+    deleteBrand(ids) {
+      this.$confirm('是否要删除该推荐?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).then(() => {
+        let params = new URLSearchParams()
+        params.append('ids', ids)
+        deleteHomeBrand(params).then((response) => {
+          this.getList()
+          this.$message({
+            type: 'success',
+            message: '删成功!',
+          })
+        })
+      })
+    },
+
+    // 弹框获取数据
+    getDialogList() {
+      fetchBrandList(this.dialogData.listQuery).then((response) => {
+        this.dialogData.list = response.data.list
+        this.dialogData.total = response.data.total
+      })
+    },
+  },
+}
 </script>
 
-<style>
-</style>
+<style></style>
