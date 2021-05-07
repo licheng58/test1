@@ -454,6 +454,30 @@ export const asyncRouterMap = [
           title: '菜单列表',
         },
       },
+
+      {
+        path: '/addMenu',
+        name: 'addMenu',
+        icon: 'icon-ziyuan',
+        title: '添加菜单',
+        component: () => import('@/views/role/menuList/addMenu.vue'),
+        meta: {
+          title: '添加菜单',
+        },
+        hidden: true,
+      },
+
+      {
+        path: '/updateMenu',
+        name: 'updateMenu',
+        icon: 'icon-ziyuan',
+        title: '修改菜单',
+        component: () => import('@/views/role/menuList/updateMenu.vue'),
+        meta: {
+          title: '修改菜单',
+        },
+        hidden: true,
+      },
       {
         path: '/resource_list',
         name: 'resource_list',
@@ -463,6 +487,18 @@ export const asyncRouterMap = [
         meta: {
           title: '资源列表',
         },
+      },
+
+      {
+        path: '/resourceCategory',
+        name: 'resourceCategory',
+        icon: 'icon-ziyuan',
+        title: '资源分配',
+        component: () => import('@/views/role/resourceList/categoryList.vue'),
+        meta: {
+          title: '资源分配',
+        },
+        hidden: true,
       },
     ],
   },
