@@ -502,6 +502,16 @@ export const asyncRouterMap = [
       },
     ],
   },
+
+  {
+    path: '/test',
+    name: 'Test',
+    title: 'test',
+    component: () => import('@/views/test.vue'),
+    meta: {
+      title: 'test',
+    },
+  },
 ]
 
 export const constantRouterMap = [
