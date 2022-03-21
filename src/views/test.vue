@@ -17,7 +17,6 @@ export default {
     //3-正则表达式
     //3-1:精确匹配 - 匹配有‘hello’这个字符
     var regex = /hello/
-    // console.log(regex.test('hello1'))
 
     //3-2：横向模糊匹配
     //需求 - 匹配第一个是a 第2个b出现2-5次 第3个c  所以下面满足的是4个
